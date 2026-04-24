@@ -1,7 +1,7 @@
 package com.trade.tradelicense.domain.factory;
 
 import com.trade.tradelicense.domain.entities.Payment;
-import com.trade.tradelicense.domain.entities.PaymentStatus;
+import com.trade.tradelicense.domain.valueobjects.PaymentStatus;
 import com.trade.tradelicense.domain.valueobjects.Money;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,8 @@
 package com.trade.tradelicense.domain.entities;
 
 import com.trade.tradelicense.domain.ApplicationStatus;
+import com.trade.tradelicense.domain.valueobjects.UserRole;
+import com.trade.tradelicense.domain.valueobjects.WorkflowAction;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

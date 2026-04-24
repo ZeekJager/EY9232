@@ -1,7 +1,7 @@
 package com.trade.tradelicense.domain.factory;
 
 import com.trade.tradelicense.domain.ApplicationStatus;
-import com.trade.tradelicense.domain.entities.TradeLicenseApplication;
+import com.trade.tradelicense.domain.aggregate.TradeLicenseApplication;
 import com.trade.tradelicense.domain.entities.TradeLicenseType;
 import com.trade.tradelicense.domain.entities.User;
 import org.springframework.stereotype.Component;

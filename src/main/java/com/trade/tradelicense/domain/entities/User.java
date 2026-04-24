@@ -1,5 +1,6 @@
 package com.trade.tradelicense.domain.entities;
 
+import com.trade.tradelicense.domain.valueobjects.UserRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

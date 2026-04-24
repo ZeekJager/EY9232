@@ -1,6 +1,6 @@
 package com.trade.tradelicense.domain.valueobjects;
 
-import com.trade.tradelicense.domain.entities.WorkflowAction;
+import com.trade.tradelicense.domain.valueobjects.WorkflowAction;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

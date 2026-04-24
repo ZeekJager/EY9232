@@ -34,7 +34,7 @@ public enum WorkflowStep {
 
     /**
      * The applicant settles the application fee payment (must reach
-     * {@link com.trade.tradelicense.domain.entities.PaymentStatus#SETTLED}).
+     * {@link com.trade.tradelicense.domain.valueobjects.PaymentStatus#SETTLED}).
      */
     SETTLE_PAYMENT,
 
@@ -45,14 +45,14 @@ public enum WorkflowStep {
     SUBMIT_APPLICATION,
 
     /**
-     * A reviewer (role: {@link com.trade.tradelicense.domain.entities.UserRole#REVIEWER})
+     * A reviewer (role: {@link com.trade.tradelicense.domain.valueobjects.UserRole#REVIEWER})
      * performs first-level review and either accepts, rejects, or requests
      * adjustments.
      */
     REVIEW,
 
     /**
-     * An approver (role: {@link com.trade.tradelicense.domain.entities.UserRole#APPROVER})
+     * An approver (role: {@link com.trade.tradelicense.domain.valueobjects.UserRole#APPROVER})
      * grants final approval or rejects the application.
      */
     APPROVAL

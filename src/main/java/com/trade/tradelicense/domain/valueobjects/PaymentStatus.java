@@ -1,10 +1,10 @@
-package com.trade.tradelicense.domain.entities;
+package com.trade.tradelicense.domain.valueobjects;
 
 /**
- * Lifecycle states of a {@link Payment} associated with a
- * {@link TradeLicenseApplication}.
+ * Lifecycle states of a {@link com.trade.tradelicense.domain.entities.Payment} associated with a
+ * {@link com.trade.tradelicense.domain.aggregate.TradeLicenseApplication}.
  *
- * <p>A {@link TradeLicenseApplication} may only be submitted when the linked
+ * <p>A {@link com.trade.tradelicense.domain.aggregate.TradeLicenseApplication} may only be submitted when the linked
  * payment has reached the {@link #SETTLED} state.
  */
 public enum PaymentStatus {

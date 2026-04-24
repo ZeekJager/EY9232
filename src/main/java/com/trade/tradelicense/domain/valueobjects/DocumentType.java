@@ -1,13 +1,13 @@
-package com.trade.tradelicense.domain.entities;
+package com.trade.tradelicense.domain.valueobjects;
 
 /**
  * Categorises the types of documents that can be attached to a
- * {@link TradeLicenseApplication}.
+ * {@link com.trade.tradelicense.domain.aggregate.TradeLicenseApplication}.
  *
- * <p>A {@link TradeLicenseType} specifies which {@code DocumentType}s are
+ * <p>A {@link com.trade.tradelicense.domain.entities.TradeLicenseType} specifies which {@code DocumentType}s are
  * <em>required</em> before an application may be submitted. The
- * {@link TradeLicenseApplication} aggregate enforces that all required
- * document types are present as {@link Attachment}s.
+ * {@link com.trade.tradelicense.domain.aggregate.TradeLicenseApplication} aggregate enforces that all required
+ * document types are present as {@link com.trade.tradelicense.domain.entities.Attachment}s.
  */
 public enum DocumentType {
 

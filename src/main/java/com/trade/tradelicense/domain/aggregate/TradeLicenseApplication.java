@@ -1,6 +1,11 @@
-package com.trade.tradelicense.domain.entities;
+package com.trade.tradelicense.domain.aggregate;
 
 import com.trade.tradelicense.domain.ApplicationStatus;
+import com.trade.tradelicense.domain.entities.Attachment;
+import com.trade.tradelicense.domain.entities.AuditEntry;
+import com.trade.tradelicense.domain.entities.Payment;
+import com.trade.tradelicense.domain.entities.TradeLicenseType;
+import com.trade.tradelicense.domain.entities.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,8 +38,8 @@ import java.util.UUID;
  * <p>{@code TradeLicenseApplication} is the central entity that governs the
  * full lifecycle of a trade-license request — from initial draft through
  * submission, review, and final approval or rejection. All state transitions
- * are driven by {@link WorkflowAction}s performed by {@link User}s whose
- * {@link UserRole} is validated against the current
+ * are driven by {@link com.trade.tradelicense.domain.valueobjects.WorkflowAction}s performed by {@link User}s whose
+ * {@link com.trade.tradelicense.domain.valueobjects.UserRole} is validated against the current
  * {@link ApplicationStatus}.
  *
  * <h2>Aggregate boundary</h2>
@@ -51,28 +56,28 @@ import java.util.UUID;
  *   <li>An application may only be submitted when all
  *       {@link TradeLicenseType#getRequiredDocumentTypes()} are present as
  *       {@link Attachment}s and the {@link Payment} status is
- *       {@link PaymentStatus#SETTLED}.</li>
- *   <li>Review actions ({@link WorkflowAction#ACCEPT}, {@link WorkflowAction#REJECT},
- *       {@link WorkflowAction#ADJUST}) are only permitted when the status is
+ *       {@link com.trade.tradelicense.domain.valueobjects.PaymentStatus#SETTLED}.</li>
+ *   <li>Review actions ({@link com.trade.tradelicense.domain.valueobjects.WorkflowAction#ACCEPT}, {@link com.trade.tradelicense.domain.valueobjects.WorkflowAction#REJECT},
+ *       {@link com.trade.tradelicense.domain.valueobjects.WorkflowAction#ADJUST}) are only permitted when the status is
  *       {@link ApplicationStatus#PENDING} and the actor's role is
- *       {@link UserRole#REVIEWER}.</li>
- *   <li>Approval actions ({@link WorkflowAction#APPROVE},
- *       {@link WorkflowAction#REREVIEW}) are only permitted when the status is
+ *       {@link com.trade.tradelicense.domain.valueobjects.UserRole#REVIEWER}.</li>
+ *   <li>Approval actions ({@link com.trade.tradelicense.domain.valueobjects.WorkflowAction#APPROVE},
+ *       {@link com.trade.tradelicense.domain.valueobjects.WorkflowAction#REREVIEW}) are only permitted when the status is
  *       {@link ApplicationStatus#REVIEWED} and the actor's role is
- *       {@link UserRole#APPROVER}.</li>
+ *       {@link com.trade.tradelicense.domain.valueobjects.UserRole#APPROVER}.</li>
  * </ul>
  *
  * <h2>Actors are Users, not role-specific entities</h2>
  * The {@code applicant}, and every actor recorded in {@link AuditEntry}, is a
- * {@link User} with an assigned {@link UserRole}. This design avoids creating
+ * {@link User} with an assigned {@link com.trade.tradelicense.domain.valueobjects.UserRole}. This design avoids creating
  * separate {@code Applicant}, {@code Reviewer}, and {@code Approver} entity
  * classes — keeping the model simple, avoiding identity duplication, and
  * allowing the same person to participate in different capacities across
  * different applications.
  *
  * @see User
- * @see UserRole
- * @see WorkflowAction
+ * @see com.trade.tradelicense.domain.valueobjects.UserRole
+ * @see com.trade.tradelicense.domain.valueobjects.WorkflowAction
  * @see ApplicationStatus
  */
 @Entity
@@ -93,12 +98,12 @@ public class TradeLicenseApplication {
     private UUID id;
 
     /**
-     * The {@link User} (with role {@link UserRole#APPLICANT}) who created and
+     * The {@link User} (with role {@link com.trade.tradelicense.domain.valueobjects.UserRole#APPLICANT}) who created and
      * owns this application.
      *
      * <p>Stored as a reference to the single {@link User} entity rather than a
      * dedicated {@code Applicant} class, in line with the role-based modelling
-     * strategy described in {@link UserRole}.
+     * strategy described in {@link com.trade.tradelicense.domain.valueobjects.UserRole}.
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "applicant_id", nullable = false)
@@ -132,7 +137,7 @@ public class TradeLicenseApplication {
 
     /**
      * The fee payment associated with this application. Must be in
-     * {@link PaymentStatus#SETTLED} state before the application can be
+     * {@link com.trade.tradelicense.domain.valueobjects.PaymentStatus#SETTLED} state before the application can be
      * submitted.
      */
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -1,5 +1,6 @@
-package com.trade.tradelicense.domain.entities;
+package com.trade.tradelicense.domain.aggregate;
 
+import com.trade.tradelicense.domain.entities.TradeLicenseType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
