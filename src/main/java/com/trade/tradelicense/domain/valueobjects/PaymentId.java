@@ -8,11 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.UUID;
+
 /**
  * Value object representing the identity of a
  * {@link com.trade.tradelicense.domain.entities.Payment}.
  *
- * <p>Type-safe wrapper around the raw {@code Long} surrogate key to avoid
+ * <p>Type-safe wrapper around the raw {@code UUID} surrogate key to avoid
  * inadvertent mixing of different entity IDs in domain operations.
  */
 @Embeddable
@@ -24,5 +26,5 @@ import lombok.ToString;
 public class PaymentId {
 
     /** The underlying surrogate key value. */
-    private final Long value;
+    private final UUID value;
 }

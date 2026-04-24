@@ -8,11 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.UUID;
+
 /**
  * Value object representing the identity of an
  * {@link com.trade.tradelicense.domain.entities.Attachment}.
  *
- * <p>Type-safe wrapper around the raw {@code Long} surrogate key, preventing
+ * <p>Type-safe wrapper around the raw {@code UUID} surrogate key, preventing
  * accidental confusion with other entity identifiers in domain method signatures.
  */
 @Embeddable
@@ -24,5 +26,5 @@ import lombok.ToString;
 public class AttachmentId {
 
     /** The underlying surrogate key value. */
-    private final Long value;
+    private final UUID value;
 }

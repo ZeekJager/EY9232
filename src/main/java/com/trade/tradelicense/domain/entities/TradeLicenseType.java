@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Catalog entity representing a specific type of trade license that can be
@@ -40,8 +41,8 @@ public class TradeLicenseType {
      * Surrogate primary key identifying this license type in the catalog.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     /**
      * Human-readable name of the trade license type (e.g. "Food &amp; Beverage").
