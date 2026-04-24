@@ -1,8 +1,8 @@
-package com.trade.tradelicense.domain.entities;
+package com.trade.tradelicense.domain.valueobjects;
 
 /**
- * Represents every action that a {@link User} can perform on a
- * {@link TradeLicenseApplication} at a given workflow step.
+ * Represents every action that a {@link com.trade.tradelicense.domain.entities.User} can perform on a
+ * {@link com.trade.tradelicense.domain.aggregate.TradeLicenseApplication} at a given workflow step.
  *
  * <p>Actions are grouped by the {@link UserRole} that is permitted to invoke them:
  * <ul>
@@ -13,8 +13,8 @@ package com.trade.tradelicense.domain.entities;
  *       {@link #REREVIEW}</li>
  * </ul>
  *
- * <p>The {@link TradeLicenseApplication} aggregate root is responsible for
- * enforcing that the acting {@link User}'s role authorises the requested
+ * <p>The {@link com.trade.tradelicense.domain.aggregate.TradeLicenseApplication} aggregate root is responsible for
+ * enforcing that the acting {@link com.trade.tradelicense.domain.entities.User}'s role authorises the requested
  * {@code WorkflowAction} and that the current
  * {@link com.trade.tradelicense.domain.ApplicationStatus} permits the transition.
  */

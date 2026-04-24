@@ -1,7 +1,7 @@
-package com.trade.tradelicense.domain.entities;
+package com.trade.tradelicense.domain.valueobjects;
 
 /**
- * Enum representing the possible roles a {@link User} can hold within the
+ * Enum representing the possible roles a {@link com.trade.tradelicense.domain.entities.User} can hold within the
  * Trade License Workflow.
  *
  * <p><strong>Design rationale — why a single {@code User} entity with a role field
@@ -18,8 +18,8 @@ package com.trade.tradelicense.domain.entities;
  *       REVIEWER may call accept()") can be enforced with a single
  *       {@code user.getRole()} check rather than an {@code instanceof} hierarchy
  *       that grows with each new role.</li>
- *   <li><em>Audit-trail clarity:</em> {@link AuditEntry} can reference one
- *       {@link User} and store their role <em>at the time of the action</em>,
+ *   <li><em>Audit-trail clarity:</em> {@link com.trade.tradelicense.domain.entities.AuditEntry} can reference one
+ *       {@link com.trade.tradelicense.domain.entities.User} and store their role <em>at the time of the action</em>,
  *       preserving historical context without polymorphic joins.</li>
  * </ul>
  */

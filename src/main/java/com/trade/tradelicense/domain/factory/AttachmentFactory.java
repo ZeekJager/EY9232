@@ -1,7 +1,7 @@
 package com.trade.tradelicense.domain.factory;
 
 import com.trade.tradelicense.domain.entities.Attachment;
-import com.trade.tradelicense.domain.entities.DocumentType;
+import com.trade.tradelicense.domain.valueobjects.DocumentType;
 import com.trade.tradelicense.domain.valueobjects.DocumentMeta;
 import org.springframework.stereotype.Component;
 

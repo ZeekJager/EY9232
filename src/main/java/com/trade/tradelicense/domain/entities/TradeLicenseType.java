@@ -1,5 +1,6 @@
 package com.trade.tradelicense.domain.entities;
 
+import com.trade.tradelicense.domain.valueobjects.DocumentType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
