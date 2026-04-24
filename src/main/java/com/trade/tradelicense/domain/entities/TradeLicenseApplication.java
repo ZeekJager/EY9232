@@ -25,6 +25,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * <strong>Aggregate root</strong> for the Trade License Workflow.
@@ -88,8 +89,8 @@ public class TradeLicenseApplication {
      * its entire lifecycle.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     /**
      * The {@link User} (with role {@link UserRole#APPLICANT}) who created and

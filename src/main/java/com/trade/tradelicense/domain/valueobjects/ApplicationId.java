@@ -8,11 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.UUID;
+
 /**
  * Value object representing the stable identity of a
  * {@link com.trade.tradelicense.domain.entities.TradeLicenseApplication}.
  *
- * <p>Wrapping the raw {@code Long} surrogate key in a typed value object prevents
+ * <p>Wrapping the raw {@code UUID} surrogate key in a typed value object prevents
  * accidental mix-ups between different entity IDs (e.g. passing an
  * {@link AttachmentId} where an {@code ApplicationId} is expected) and makes the
  * domain API self-documenting.
@@ -26,5 +28,5 @@ import lombok.ToString;
 public class ApplicationId {
 
     /** The underlying surrogate key value. */
-    private final Long value;
+    private final UUID value;
 }

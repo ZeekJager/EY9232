@@ -14,6 +14,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 /**
  * Domain entity representing any human actor in the Trade License Workflow.
  *
@@ -56,8 +58,8 @@ public class User {
      * workflow interactions.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     /**
      * Full display name of the user (e.g. "Jane Smith").

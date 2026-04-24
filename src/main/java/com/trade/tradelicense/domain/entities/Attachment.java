@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * Represents a document uploaded and attached to a
@@ -39,8 +40,8 @@ public class Attachment {
      * Surrogate primary key identifying this attachment instance.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     /**
      * Original file name as supplied by the uploader (e.g. "passport.pdf").

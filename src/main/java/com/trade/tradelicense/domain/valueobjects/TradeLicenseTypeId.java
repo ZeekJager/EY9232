@@ -8,11 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.UUID;
+
 /**
  * Value object representing the identity of a
  * {@link com.trade.tradelicense.domain.entities.TradeLicenseType} catalog entry.
  *
- * <p>Type-safe wrapper around the raw {@code Long} surrogate key used when
+ * <p>Type-safe wrapper around the raw {@code UUID} surrogate key used when
  * referencing a specific trade license type across aggregate boundaries.
  */
 @Embeddable
@@ -24,5 +26,5 @@ import lombok.ToString;
 public class TradeLicenseTypeId {
 
     /** The underlying surrogate key value. */
-    private final Long value;
+    private final UUID value;
 }

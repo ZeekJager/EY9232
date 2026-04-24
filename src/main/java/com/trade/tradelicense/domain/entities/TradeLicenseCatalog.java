@@ -18,6 +18,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * <strong>Aggregate root</strong> for the Trade License Catalog.
@@ -54,8 +55,8 @@ public class TradeLicenseCatalog {
      * Surrogate primary key identifying this catalog.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     /**
      * Human-readable name of this catalog
