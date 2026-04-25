@@ -1,15 +1,12 @@
 package com.trade.tradelicense.infrastructure.persistence.configurations;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Holds database table-name constants used across the infrastructure persistence layer.
  *
  * <p>Centralising table names in one place prevents typos and makes future
  * renames a single-point-of-change operation.
  */
-@Component
-public class TradeLicenseTableConfig {
+public final class TradeLicenseTableConfig {
 
     /** Table storing {@link com.trade.tradelicense.domain.aggregate.TradeLicenseApplication} records. */
     public static final String APPLICATIONS_TABLE = "trade_license_applications";

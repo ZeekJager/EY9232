@@ -1,5 +1,6 @@
 package com.trade.tradelicense.infrastructure.common.serialization;
 
+import tools.jackson.core.JacksonException;
 import tools.jackson.core.JsonGenerator;
 import tools.jackson.databind.SerializationContext;
 import tools.jackson.databind.ValueSerializer;
@@ -30,7 +31,7 @@ public class MoneySerializer extends ValueSerializer<Money> {
      * @param context  the serialization context
      */
     @Override
-    public void serialize(Money money, JsonGenerator gen, SerializationContext context) {
+    public void serialize(Money money, JsonGenerator gen, SerializationContext context) throws JacksonException {
         gen.writeStartObject();
         gen.writeNumberProperty("amount", money.getAmount());
         gen.writeStringProperty("currency", money.getCurrency());
