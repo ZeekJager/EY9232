@@ -1,14 +1,12 @@
 package com.trade.tradelicense.infrastructure.common.serialization;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 import com.trade.tradelicense.domain.valueobjects.Money;
 
-import java.io.IOException;
-
 /**
- * Jackson {@link JsonSerializer} for the {@link Money} value object.
+ * Jackson {@link ValueSerializer} for the {@link Money} value object.
  *
  * <p>Serializes a {@code Money} instance as a JSON object with two fields:
  * <pre>
@@ -18,25 +16,24 @@ import java.io.IOException;
  * }
  * </pre>
  *
- * <p>Register this serializer via a Jackson {@code @JsonSerialize} annotation on the
+ * <p>Register this serializer via a {@code @JsonSerialize} annotation on the
  * {@link Money} class or through a Spring Boot {@code Jackson2ObjectMapperBuilderCustomizer}
  * bean.
  */
-public class MoneySerializer extends JsonSerializer<Money> {
+public class MoneySerializer extends ValueSerializer<Money> {
 
     /**
      * Serializes the given {@link Money} instance.
      *
      * @param money    the value to serialize; must not be {@code null}
      * @param gen      the JSON generator to write to
-     * @param provider the serializer provider
-     * @throws IOException if a JSON I/O error occurs
+     * @param context  the serialization context
      */
     @Override
-    public void serialize(Money money, JsonGenerator gen, SerializerProvider provider) throws IOException {
+    public void serialize(Money money, JsonGenerator gen, SerializationContext context) {
         gen.writeStartObject();
-        gen.writeNumberField("amount", money.getAmount());
-        gen.writeStringField("currency", money.getCurrency());
+        gen.writeNumberProperty("amount", money.getAmount());
+        gen.writeStringProperty("currency", money.getCurrency());
         gen.writeEndObject();
     }
 }

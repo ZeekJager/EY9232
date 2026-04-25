@@ -3,7 +3,6 @@ package com.trade.tradelicense.infrastructure.repository;
 import com.trade.tradelicense.domain.entities.User;
 import com.trade.tradelicense.domain.repository.IUserRepository;
 import com.trade.tradelicense.domain.valueobjects.UserRole;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,49 +13,26 @@ import java.util.UUID;
 /**
  * JPA-backed implementation of {@link IUserRepository}.
  *
- * <p>Delegates all persistence operations to the inner Spring Data JPA interface
- * {@link SpringDataUserRepository}.
+ * <p>Extends both {@link JpaRepository} and the domain interface so this single
+ * Spring Data repository can be injected wherever {@link IUserRepository} is required.
  */
 @Repository
-@RequiredArgsConstructor
-public class JpaUserRepository implements IUserRepository {
-
-    private final SpringDataUserRepository springRepo;
-
-    @Override
-    public Optional<User> findById(UUID id) {
-        return springRepo.findById(id);
-    }
-
-    @Override
-    public Optional<User> findByEmail(String email) {
-        return springRepo.findByEmail(email);
-    }
-
-    @Override
-    public List<User> findByRole(UserRole role) {
-        return springRepo.findByRole(role);
-    }
+public interface JpaUserRepository
+        extends JpaRepository<User, UUID>, IUserRepository {
 
     /**
-     * Inner Spring Data JPA interface for {@link User} persistence.
+     * {@inheritDoc}
+     *
+     * <p>Derived from the {@code email} field name via Spring Data naming conventions.
      */
-    interface SpringDataUserRepository extends JpaRepository<User, UUID> {
+    @Override
+    Optional<User> findByEmail(String email);
 
-        /**
-         * Finds a user by their unique e-mail address.
-         *
-         * @param email the e-mail address to look up
-         * @return the matching user, or empty if not found
-         */
-        Optional<User> findByEmail(String email);
-
-        /**
-         * Returns all users holding the specified role.
-         *
-         * @param role the {@link UserRole} to filter by
-         * @return matching users
-         */
-        List<User> findByRole(UserRole role);
-    }
+    /**
+     * {@inheritDoc}
+     *
+     * <p>Derived from the {@code role} field name via Spring Data naming conventions.
+     */
+    @Override
+    List<User> findByRole(UserRole role);
 }
