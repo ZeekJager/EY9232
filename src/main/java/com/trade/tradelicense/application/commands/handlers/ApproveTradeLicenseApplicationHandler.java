@@ -9,6 +9,8 @@ import com.trade.tradelicense.domain.valueobjects.Actor;
 import com.trade.tradelicense.domain.valueobjects.ApplicationId;
 import com.trade.tradelicense.domain.valueobjects.LicenseNumber;
 import com.trade.tradelicense.domain.valueobjects.LicensePeriod;
+import com.trade.tradelicense.domain.valueobjects.TinNumber;
+import com.trade.tradelicense.domain.valueobjects.TradeLicenseType;
 import com.trade.tradelicense.domain.valueobjects.UserId;
 import com.trade.tradelicense.application.commands.ApproveTradeLicenseApplicationCommand;
 import com.trade.tradelicense.application.common.CommandHandler;
@@ -54,8 +56,11 @@ public class ApproveTradeLicenseApplicationHandler implements CommandHandler<App
             TradeLicense tradeLicense = tradeLicenseFactory.issueLicense(
                     application,
                     new LicenseNumber(command.licenseNumber()),
+                    new TinNumber(command.tinNumber()),
+                    new TradeLicenseType(command.licenseTypeToIssue(), command.licenseTypeToIssue()),
                     new LicensePeriod(issuedOn, issuedOn.plusYears(1))
             );
+            validator.validateLicenseIdDoesNotExist(tradeLicense.id());
             tradeLicenseRepository.save(tradeLicense);
         }
 

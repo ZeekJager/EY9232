@@ -61,7 +61,6 @@ public class TradeLicenseApplicationController {
                 request.applicantId(),
                 request.fullName(),
                 request.nationalIdNumber(),
-                request.tinNumber(),
                 request.email(),
                 request.phoneNumber(),
                 request.tradeLicenseType(),

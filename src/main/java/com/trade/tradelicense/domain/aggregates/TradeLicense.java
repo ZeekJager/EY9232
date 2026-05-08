@@ -6,6 +6,7 @@ import com.trade.tradelicense.domain.valueobjects.Commodity;
 import com.trade.tradelicense.domain.valueobjects.LicenseId;
 import com.trade.tradelicense.domain.valueobjects.LicenseNumber;
 import com.trade.tradelicense.domain.valueobjects.LicensePeriod;
+import com.trade.tradelicense.domain.valueobjects.TinNumber;
 import com.trade.tradelicense.domain.valueobjects.TradeLicenseType;
 
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class TradeLicense {
     private final LicenseNumber licenseNumber;
     private final ApplicationId sourceApplicationId;
     private final User licenseHolder;
+    private final TinNumber tinNumber;
     private final TradeLicenseType licenseType;
     private final Commodity commodity;
     private final LicensePeriod licensePeriod;
@@ -26,6 +28,7 @@ public class TradeLicense {
             LicenseNumber licenseNumber,
             ApplicationId sourceApplicationId,
             User licenseHolder,
+            TinNumber tinNumber,
             TradeLicenseType licenseType,
             Commodity commodity,
             LicensePeriod licensePeriod,
@@ -35,6 +38,7 @@ public class TradeLicense {
         this.licenseNumber = Objects.requireNonNull(licenseNumber, "License number is required");
         this.sourceApplicationId = Objects.requireNonNull(sourceApplicationId, "Source application id is required");
         this.licenseHolder = Objects.requireNonNull(licenseHolder, "License holder is required");
+        this.tinNumber = Objects.requireNonNull(tinNumber, "TIN number is required");
         this.licenseType = Objects.requireNonNull(licenseType, "Trade license type is required");
         this.commodity = Objects.requireNonNull(commodity, "Commodity is required");
         this.licensePeriod = Objects.requireNonNull(licensePeriod, "License period is required");
@@ -44,6 +48,8 @@ public class TradeLicense {
     public static TradeLicense issue(
             TradeLicenseApplication application,
             LicenseNumber licenseNumber,
+            TinNumber tinNumber,
+            TradeLicenseType licenseTypeToIssue,
             LicensePeriod licensePeriod
     ) {
         Objects.requireNonNull(application, "Application is required");
@@ -52,7 +58,8 @@ public class TradeLicense {
                 licenseNumber,
                 application.id(),
                 application.applicant(),
-                application.licenseType(),
+                tinNumber,
+                licenseTypeToIssue,
                 application.commodity(),
                 licensePeriod,
                 LocalDate.now()
@@ -73,6 +80,10 @@ public class TradeLicense {
 
     public User licenseHolder() {
         return licenseHolder;
+    }
+
+    public TinNumber tinNumber() {
+        return tinNumber;
     }
 
     public TradeLicenseType licenseType() {

@@ -50,7 +50,9 @@ public class TradeLicenseApprovalController {
                 request.role(),
                 request.decision(),
                 request.comment(),
-                request.licenseNumber()
+                request.licenseNumber(),
+                request.tinNumber(),
+                request.licenseTypeToIssue()
         ));
         return ResponseEntity.ok(TradeLicenseApplicationResponse.fromDomain(result.data()));
     }

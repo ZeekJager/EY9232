@@ -1,9 +1,12 @@
 package com.trade.tradelicense.infrastructure.persistence;
 
 import com.trade.tradelicense.domain.enums.ApplicationStatus;
+import com.trade.tradelicense.domain.enums.ApprovalDecision;
 import com.trade.tradelicense.domain.enums.DocumentStatus;
 import com.trade.tradelicense.domain.enums.PaymentStatus;
+import com.trade.tradelicense.domain.enums.ReviewDecision;
 import com.trade.tradelicense.domain.enums.UserRole;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -19,18 +22,23 @@ import java.util.UUID;
 public class JpaTradeLicenseApplicationEntity {
     @Id
     private UUID id;
+    @Column(unique = true)
     private UUID applicantId;
 
     @Enumerated(EnumType.STRING)
     private UserRole applicantRole;
 
+    @Column(unique = true)
     private String fullName;
+    @Column(unique = true)
     private String nationalIdNumber;
-    private String tinNumber;
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String phoneNumber;
     private String tradeLicenseType;
     private String commodity;
+    @Column(unique = true)
     private UUID documentId;
     private String documentType;
     private String documentReference;
@@ -39,6 +47,7 @@ public class JpaTradeLicenseApplicationEntity {
     private DocumentStatus documentStatus;
 
     private LocalDateTime documentUploadedAt;
+    @Column(unique = true)
     private UUID paymentSettlementId;
     private BigDecimal paymentAmount;
     private String paymentCurrency;
@@ -48,6 +57,22 @@ public class JpaTradeLicenseApplicationEntity {
     private PaymentStatus paymentStatus;
 
     private LocalDateTime paymentSettledAt;
+    @Column(unique = true)
+    private UUID reviewerId;
+
+    @Enumerated(EnumType.STRING)
+    private ReviewDecision reviewDecision;
+
+    private String reviewComment;
+    private LocalDateTime reviewedAt;
+    @Column(unique = true)
+    private UUID approverId;
+
+    @Enumerated(EnumType.STRING)
+    private ApprovalDecision approvalDecision;
+
+    private String approvalComment;
+    private LocalDateTime approvedAt;
 
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
@@ -61,7 +86,6 @@ public class JpaTradeLicenseApplicationEntity {
             UserRole applicantRole,
             String fullName,
             String nationalIdNumber,
-            String tinNumber,
             String email,
             String phoneNumber,
             String tradeLicenseType,
@@ -77,6 +101,14 @@ public class JpaTradeLicenseApplicationEntity {
             String paymentReference,
             PaymentStatus paymentStatus,
             LocalDateTime paymentSettledAt,
+            UUID reviewerId,
+            ReviewDecision reviewDecision,
+            String reviewComment,
+            LocalDateTime reviewedAt,
+            UUID approverId,
+            ApprovalDecision approvalDecision,
+            String approvalComment,
+            LocalDateTime approvedAt,
             ApplicationStatus status
     ) {
         this.id = id;
@@ -84,7 +116,6 @@ public class JpaTradeLicenseApplicationEntity {
         this.applicantRole = applicantRole;
         this.fullName = fullName;
         this.nationalIdNumber = nationalIdNumber;
-        this.tinNumber = tinNumber;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.tradeLicenseType = tradeLicenseType;
@@ -100,6 +131,14 @@ public class JpaTradeLicenseApplicationEntity {
         this.paymentReference = paymentReference;
         this.paymentStatus = paymentStatus;
         this.paymentSettledAt = paymentSettledAt;
+        this.reviewerId = reviewerId;
+        this.reviewDecision = reviewDecision;
+        this.reviewComment = reviewComment;
+        this.reviewedAt = reviewedAt;
+        this.approverId = approverId;
+        this.approvalDecision = approvalDecision;
+        this.approvalComment = approvalComment;
+        this.approvedAt = approvedAt;
         this.status = status;
     }
 
@@ -121,10 +160,6 @@ public class JpaTradeLicenseApplicationEntity {
 
     public String getNationalIdNumber() {
         return nationalIdNumber;
-    }
-
-    public String getTinNumber() {
-        return tinNumber;
     }
 
     public String getEmail() {
@@ -185,6 +220,38 @@ public class JpaTradeLicenseApplicationEntity {
 
     public LocalDateTime getPaymentSettledAt() {
         return paymentSettledAt;
+    }
+
+    public UUID getReviewerId() {
+        return reviewerId;
+    }
+
+    public ReviewDecision getReviewDecision() {
+        return reviewDecision;
+    }
+
+    public String getReviewComment() {
+        return reviewComment;
+    }
+
+    public LocalDateTime getReviewedAt() {
+        return reviewedAt;
+    }
+
+    public UUID getApproverId() {
+        return approverId;
+    }
+
+    public ApprovalDecision getApprovalDecision() {
+        return approvalDecision;
+    }
+
+    public String getApprovalComment() {
+        return approvalComment;
+    }
+
+    public LocalDateTime getApprovedAt() {
+        return approvedAt;
     }
 
     public ApplicationStatus getStatus() {

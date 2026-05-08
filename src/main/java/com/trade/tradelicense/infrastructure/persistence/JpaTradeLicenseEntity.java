@@ -3,6 +3,7 @@ package com.trade.tradelicense.infrastructure.persistence;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -12,10 +13,13 @@ import java.util.UUID;
 public class JpaTradeLicenseEntity {
     @Id
     private UUID id;
+    @Column(unique = true)
     private String licenseNumber;
     private UUID sourceApplicationId;
     private UUID applicantId;
     private String fullName;
+    @Column(unique = true)
+    private String tinNumber;
     private String tradeLicenseType;
     private String commodity;
     private LocalDate issuedDate;
@@ -29,6 +33,7 @@ public class JpaTradeLicenseEntity {
             UUID sourceApplicationId,
             UUID applicantId,
             String fullName,
+            String tinNumber,
             String tradeLicenseType,
             String commodity,
             LocalDate issuedDate
@@ -38,6 +43,7 @@ public class JpaTradeLicenseEntity {
         this.sourceApplicationId = sourceApplicationId;
         this.applicantId = applicantId;
         this.fullName = fullName;
+        this.tinNumber = tinNumber;
         this.tradeLicenseType = tradeLicenseType;
         this.commodity = commodity;
         this.issuedDate = issuedDate;
@@ -61,6 +67,10 @@ public class JpaTradeLicenseEntity {
 
     public String getFullName() {
         return fullName;
+    }
+
+    public String getTinNumber() {
+        return tinNumber;
     }
 
     public String getTradeLicenseType() {

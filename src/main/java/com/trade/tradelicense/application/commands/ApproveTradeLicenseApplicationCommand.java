@@ -11,6 +11,8 @@ public record ApproveTradeLicenseApplicationCommand(
         UserRole role,
         ApprovalDecision decision,
         String comment,
-        String licenseNumber
+        String licenseNumber,
+        String tinNumber,
+        String licenseTypeToIssue
 ) {
 }

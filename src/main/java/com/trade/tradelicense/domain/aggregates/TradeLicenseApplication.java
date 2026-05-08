@@ -125,6 +125,20 @@ public class TradeLicenseApplication {
             PaymentSettlement paymentSettlement,
             ApplicationStatus status
     ) {
+        return rehydrate(id, applicant, licenseType, commodity, documentPackage, paymentSettlement, null, null, status);
+    }
+
+    public static TradeLicenseApplication rehydrate(
+            ApplicationId id,
+            User applicant,
+            TradeLicenseType licenseType,
+            Commodity commodity,
+            DocumentPackage documentPackage,
+            PaymentSettlement paymentSettlement,
+            ReviewRecord reviewRecord,
+            ApprovalRecord approvalRecord,
+            ApplicationStatus status
+    ) {
         return new TradeLicenseApplication(
                 id,
                 applicant,
@@ -132,8 +146,8 @@ public class TradeLicenseApplication {
                 commodity,
                 documentPackage,
                 paymentSettlement,
-                null,
-                null,
+                reviewRecord,
+                approvalRecord,
                 status
         );
     }

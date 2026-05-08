@@ -11,7 +11,6 @@ import com.trade.tradelicense.domain.valueobjects.Money;
 import com.trade.tradelicense.domain.valueobjects.NationalIdNumber;
 import com.trade.tradelicense.domain.valueobjects.PaymentReference;
 import com.trade.tradelicense.domain.valueobjects.PhoneNumber;
-import com.trade.tradelicense.domain.valueobjects.TinNumber;
 import com.trade.tradelicense.domain.valueobjects.TradeLicenseType;
 import com.trade.tradelicense.domain.valueobjects.UserId;
 import com.trade.tradelicense.application.commands.RequestNewTradeLicenseApplicationCommand;
@@ -51,7 +50,6 @@ public class RequestNewTradeLicenseApplicationHandler implements CommandHandler<
                 UserRole.CUSTOMER,
                 new FullName(command.fullName()),
                 new NationalIdNumber(command.nationalIdNumber()),
-                new TinNumber(command.tinNumber()),
                 new EmailAddress(command.email()),
                 new PhoneNumber(command.phoneNumber())
         );
@@ -63,6 +61,8 @@ public class RequestNewTradeLicenseApplicationHandler implements CommandHandler<
                 new Money(BigDecimal.ZERO, "USD"),
                 new PaymentReference("PENDING_PAYMENT")
         );
+        validator.validateApplicationIdDoesNotExist(application.id());
+        validator.validatePaymentSettlementIdDoesNotExist(application.paymentSettlement().id());
 
         return Result.success("Trade license application draft created", repository.save(application));
     }

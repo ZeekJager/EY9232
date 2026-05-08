@@ -35,6 +35,8 @@ public class AttachTradeLicenseApplicationDocumentHandler implements CommandHand
         TradeLicenseApplication application = repository.findById(new ApplicationId(command.applicationId()))
                 .orElseThrow(() -> new DomainException("Trade license application not found"));
         application.attachDocument(new DocumentType(command.documentType()), new DocumentReference(command.documentReference()));
+        var documents = application.documentPackage().documents();
+        validator.validateDocumentIdDoesNotExist(documents.get(documents.size() - 1).id());
         return Result.success("Document attached", repository.save(application));
     }
 }

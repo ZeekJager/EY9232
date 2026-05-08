@@ -6,7 +6,6 @@ public record RequestNewTradeLicenseApplicationCommand(
         UUID applicantId,
         String fullName,
         String nationalIdNumber,
-        String tinNumber,
         String email,
         String phoneNumber,
         String tradeLicenseType,

@@ -8,4 +8,7 @@ import java.util.UUID;
 
 @Repository
 public interface SpringDataTradeLicenseRepository extends JpaRepository<JpaTradeLicenseEntity, UUID> {
+    boolean existsByLicenseNumber(String licenseNumber);
+
+    boolean existsByTinNumber(String tinNumber);
 }

@@ -181,10 +181,6 @@
                 <input id="createNationalIdNumber" value="NID-123456">
             </div>
             <div class="field">
-                <label for="createTinNumber">TIN Number</label>
-                <input id="createTinNumber" value="TIN-987654">
-            </div>
-            <div class="field">
                 <label for="createEmail">Email</label>
                 <input id="createEmail" value="zekarias@example.com">
             </div>
@@ -326,6 +322,14 @@
                 <label for="licenseNumber">License Number</label>
                 <input id="licenseNumber" value="TL-2026-0001">
             </div>
+            <div class="field">
+                <label for="issuedTinNumber">Issued TIN Number</label>
+                <input id="issuedTinNumber" value="TIN-987654">
+            </div>
+            <div class="field">
+                <label for="licenseTypeToIssue">License Type To Issue</label>
+                <input id="licenseTypeToIssue" value="New Trade License">
+            </div>
             <button type="button" onclick="approveApplication()">Approve</button>
         </section>
     </div>
@@ -431,7 +435,6 @@
             applicantId: value("createApplicantId"),
             fullName: value("createFullName"),
             nationalIdNumber: value("createNationalIdNumber"),
-            tinNumber: value("createTinNumber"),
             email: value("createEmail"),
             phoneNumber: value("createPhoneNumber"),
             tradeLicenseType: value("createTradeLicenseType"),
@@ -480,7 +483,9 @@
             role: value("approveRole"),
             decision: value("approvalDecision"),
             comment: value("approvalComment"),
-            licenseNumber: value("licenseNumber")
+            licenseNumber: value("licenseNumber"),
+            tinNumber: value("issuedTinNumber"),
+            licenseTypeToIssue: value("licenseTypeToIssue")
         }));
     }
 </script>
